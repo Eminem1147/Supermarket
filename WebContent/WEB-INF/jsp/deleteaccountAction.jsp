@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+    
+<%@ taglib prefix="s" uri="/struts-tags" %>
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>删除账户</title>
+</head>
+<body>
+	<h3>删除账户界面</h3>
+	<s:form action="AccountAction_delete.action" method="post" theme="simple">
+		您所要删除的账户ID：
+		<s:textfield name="delete_id" id="delete_id" /><br><br>
+		<s:submit value="删除" align="left" /><br><br>
+	</s:form>
+</body>
+</html>
