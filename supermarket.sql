@@ -32,9 +32,8 @@ CREATE TABLE `account` (
 -- ----------------------------
 -- Records of account
 -- ----------------------------
-INSERT INTO `account` VALUES ('1', 'admin', '123456', '张健', '961620263@qq.com', '15295575496');
-INSERT INTO `account` VALUES ('2', 'admin1', '123456', '阿华', '545123456@qq.com', '15358845456');
-INSERT INTO `account` VALUES ('3', 'admin2', '123456', '阿西', '564513245@qq.com', '15489755633');
+INSERT INTO `account` VALUES ('1', 'admin', '123456', '阿华', '545123456@qq.com', '15358845456');
+INSERT INTO `account` VALUES ('2', 'admin1', '123456', '阿西', '564513245@qq.com', '15489755633');
 
 -- ----------------------------
 -- Table structure for `employee`
