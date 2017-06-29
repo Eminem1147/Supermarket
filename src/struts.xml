@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- Spring整合Struts时，其中的action对象由Spring容器创建-->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 其中name表示为在整合时Spring配置文件中<bean>的name值 -->
+	<constant name="struts.objectFactory" value="spring" />
+	<constant name="struts.objectFactory.spring.autoWrite" value="name" />
+	
+	<package name="default" namespace="/" extends="struts-default">	
+		<!-- 当出现错误，全部转到CRUDerror.jsp页面（全局结果） -->
+		<global-results>
+			<result name="error">/WEB-INF/jsp/CRUDerror.jsp</result>
+		</global-results>
+	
+		<!-- 登录操作的action -->
+		<action name="login" class="action.LoginAction" method="execute">		
+			<result name="success">/WEB-INF/jsp/index.jsp</result>
+			<result name="error">loginerror.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<!-- *********************返回index界面的action********************** -->
+		<action name="returnindex" class="action.ReturnIndexAction" method="execute">
+			<result name="success">/WEB-INF/jsp/index.jsp</result>
+		</action>
+		
+		<!-- *********************跳转页面的action！！！！*********************** -->
+		<action name="changeurl*" class="action.ChangeURLAction" method="execute">
+			<result name="success">/WEB-INF/jsp/{1}Action.jsp</result>
+		</action>
+		
+		<!-- *********************CRUD的action！！！！！！********************* -->
+		<action name="*_*" class="action.{1}" method="{2}">
+			<result name="search">/WEB-INF/jsp/Search{1}.jsp</result>
+			<result name="insert">/WEB-INF/jsp/CRUDsuccess.jsp</result>
+			<result name="delete">/WEB-INF/jsp/CRUDsuccess.jsp</result>
+			<result name="input">/WEB-INF/jsp/Insert{1}.jsp</result>
+		</action>
+		
+	</package>
+</struts>

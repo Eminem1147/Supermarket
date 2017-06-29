@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- 这里name的值一定要和那个JavaBean的字段对应！ -->
+    <class name="entity.Sell" table="sell">
+        <id name="id" column="id">
+            <generator class="native"></generator>
+        </id>
+        <property name="productid" column="productid"></property>
+        <property name="productname" column="productname"></property>
+        <property name="number" column="number"></property>
+        <property name="selldate" column="selldate"></property>
+    </class>
+</hibernate-mapping>

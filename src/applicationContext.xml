@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       	   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           ">
+    
+    <!-- 将loginDaoImpl注入到loginServiceImpl中 -->
+    <bean name="loginDaoImpl" class="dao.impl.LoginDaoImpl">
+    </bean>
+    
+	<!-- 把LoginServiceImpl注入到action的loginService中（实现注入接口！！！！！！！！） -->
+	<bean name="loginServiceImpl" class="service.impl.LoginServiceImpl" scope="prototype">
+		<property name="loginDao" ref="loginDaoImpl" />
+	</bean>
+	<!-- 注意！！！！！！！！！！spring的id要和struts的class相匹配，否则报错！！！！！！！！！！！！！！！！！ -->
+	<bean id="action.LoginAction" name="login" class="action.LoginAction" scope="prototype">
+		<property name="loginService" ref="loginServiceImpl" />
+	</bean>
+	
+	<!-- 必须把action交给spring托管，否则报错！！！！！！！！！！！！ -->
+	<bean id="action.ChangeURLAction" name="changeURL" class="action.ChangeURLAction" scope="prototype"></bean>
+    <bean id="action.ReturnIndexAction" name="returnindex" class="action.ReturnIndexAction"></bean>
+    
+    <!-- **********************账户管理bean************************* -->
+    <bean name="searchAccountDaoImpl" class="dao.impl.SearchAccountDaoImpl">
+    </bean>
+    <bean name="searchAccountServiceImpl" class="service.impl.SearchAccountServiceImpl" scope="prototype">
+    	<property name="searchAccountDao" ref="searchAccountDaoImpl" />
+    </bean>
+    <bean id="action.AccountAction" name="account" class="action.AccountAction" scope="prototype">
+    	<!-- 这里指向下面的bean -->
+    	<property name="searchAccountService" ref="searchAccountServiceImpl" />
+    	<property name="insertAccountService" ref="insertAccountServiceImpl" />
+    	<property name="deleteAccountService" ref="deleteAccountServiceImpl" />
+    </bean>
+    <!-- ************************添加的bean*************************** -->
+    <bean name="insertAccountDaoImpl" class="dao.impl.InsertAccountDaoImpl">
+    </bean>
+    <bean name="insertAccountServiceImpl" class="service.impl.InsertAccountServiceImpl" scope="prototype">
+    	<property name="insertAccountDao" ref="insertAccountDaoImpl" />
+    </bean>
+    <!-- ************************删除的bean**************************** -->
+    <bean name="deleteAccountDaoImpl" class="dao.impl.DeleteAccountDaoImpl">
+    </bean>
+    <bean name="deleteAccountServiceImpl" class="service.impl.DeleteAccountServiceImpl" scope="prototype">
+    	<property name="deleteAccountDao" ref="deleteAccountDaoImpl" />
+    </bean>
+    <!-- **********************商品管理bean************************* -->
+    <bean name="searchProductDaoImpl" class="dao.impl.SearchProductDaoImpl">
+    </bean>
+    <bean name="searchProductServiceImpl" class="service.impl.SearchProductServiceImpl" scope="prototype">
+    	<property name="searchProductDao" ref="searchProductDaoImpl" />
+    </bean>
+    <bean id="action.ProductAction" name="product" class="action.ProductAction" scope="prototype">
+    	<property name="searchProductService" ref="searchProductServiceImpl" />
+    	<property name="insertProductService" ref="insertProductServiceImpl" />
+    </bean>
+    <!-- ************************添加的bean**************************** -->
+    <bean name="insertProductDaoImpl" class="dao.impl.InsertProductDaoImpl">
+    </bean>
+    <bean name="insertProductServiceImpl" class="service.impl.InsertProductServiceImpl" scope="prototype">
+    	<property name="insertProductDao" ref="insertProductDaoImpl" />
+    </bean>
+    <!-- **********************员工管理bean************************* -->
+	<bean name="searchEmployeeDaoImpl" class="dao.impl.SearchEmployeeDaoImpl">
+    </bean>
+    <bean name="searchEmployeeServiceImpl" class="service.impl.SearchEmployeeServiceImpl" scope="prototype">
+    	<property name="searchEmployeeDao" ref="searchEmployeeDaoImpl" />
+    </bean>
+    <bean id="action.EmployeeAction" name="employee" class="action.EmployeeAction" scope="prototype">
+    	<property name="searchEmployeeService" ref="searchEmployeeServiceImpl" />
+    	<property name="insertEmployeeService" ref="insertEmployeeServiceImpl" />
+    	<property name="deleteEmployeeService" ref="deleteEmployeeServiceImpl" />
+    </bean>
+	<!-- ************************添加的bean**************************** -->
+    <bean name="insertEmployeeDaoImpl" class="dao.impl.InsertEmployeeDaoImpl">
+    </bean>
+    <bean name="insertEmployeeServiceImpl" class="service.impl.InsertEmployeeServiceImpl" scope="prototype">
+    	<property name="insertEmployeeDao" ref="insertEmployeeDaoImpl" />
+    </bean>
+    <!-- ************************删除的bean**************************** -->
+    <bean name="deleteEmployeeDaoImpl" class="dao.impl.DeleteEmployeeDaoImpl">
+    </bean>
+    <bean name="deleteEmployeeServiceImpl" class="service.impl.DeleteEmployeeServiceImpl" scope="prototype">
+    	<property name="deleteEmployeeDao" ref="deleteEmployeeDaoImpl" />
+    </bean>
+	<!-- **********************库存管理bean************************* -->
+	<bean name="searchStockDaoImpl" class="dao.impl.SearchStockDaoImpl">
+    </bean>
+    <bean name="searchStockServiceImpl" class="service.impl.SearchStockServiceImpl" scope="prototype">
+    	<property name="searchStockDao" ref="searchStockDaoImpl" />
+    </bean>
+    <bean id="action.StockAction" name="stock" class="action.StockAction" scope="prototype">
+    	<property name="searchStockService" ref="searchStockServiceImpl" />
+    	<property name="insertStockService" ref="insertStockServiceImpl" />
+    </bean>
+	<!-- ************************添加的bean**************************** -->
+    <bean name="insertStockDaoImpl" class="dao.impl.InsertStockDaoImpl">
+    </bean>
+    <bean name="insertStockServiceImpl" class="service.impl.InsertStockServiceImpl" scope="prototype">
+    	<property name="insertStockDao" ref="insertStockDaoImpl" />
+    </bean>
+	<!-- **********************销售管理bean************************* -->
+	<bean name="searchSellDaoImpl" class="dao.impl.SearchSellDaoImpl">
+    </bean>
+    <bean name="searchSellServiceImpl" class="service.impl.SearchSellServiceImpl" scope="prototype">
+    	<property name="searchSellDao" ref="searchSellDaoImpl" />
+    </bean>
+    <bean id="action.SellAction" name="sell" class="action.SellAction" scope="prototype">
+    	<property name="searchSellService" ref="searchSellServiceImpl" />
+    	<property name="insertSellService" ref="insertSellServiceImpl" />
+    </bean>
+	<!-- ************************添加的bean**************************** -->
+    <bean name="insertSellDaoImpl" class="dao.impl.InsertSellDaoImpl">
+    </bean>
+    <bean name="insertSellServiceImpl" class="service.impl.InsertSellServiceImpl" scope="prototype">
+    	<property name="insertSellDao" ref="insertSellDaoImpl" />
+    </bean>
+	<!-- ************************进货管理bean*************************** -->
+	<bean name="searchPurchaseDaoImpl" class="dao.impl.SearchPurchaseDaoImpl">
+    </bean>
+    <bean name="searchPurchaseServiceImpl" class="service.impl.SearchPurchaseServiceImpl" scope="prototype">
+    	<property name="searchPurchaseDao" ref="searchPurchaseDaoImpl" />
+    </bean>
+    <bean id="action.PurchaseAction" name="purchase" class="action.PurchaseAction" scope="prototype">
+    	<property name="searchPurchaseService" ref="searchPurchaseServiceImpl" />
+    	<property name="insertPurchaseService" ref="insertPurchaseServiceImpl" />
+    </bean>
+    <!-- ************************添加的bean**************************** -->
+    <bean name="insertPurchaseDaoImpl" class="dao.impl.InsertPurchaseDaoImpl">
+    </bean>
+    <bean name="insertPurchaseServiceImpl" class="service.impl.InsertPurchaseServiceImpl" scope="prototype">
+    	<property name="insertPurchaseDao" ref="insertPurchaseDaoImpl" />
+    </bean>
+</beans>
